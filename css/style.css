@@ -1,0 +1,195 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: #6B301D;
+}
+
+/* 앞에 있는 캐릭터 */
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.face{
+    width: 800px;
+    height: 1000px;
+    background-color: rgb(209, 202, 202);
+    border-radius: 50% 47% 49% 49% / 40% 40% 57% 57%;
+    box-shadow: 5px 5px 5px 5px rgb(209, 202, 202), -5px 5px 5px 5px rgb(209, 202, 202), -5px -5px 5px 5px rgb(209, 202, 202), 5px -5px 5px 5px rgb(209, 202, 202);
+}
+.face::after{
+    content: "";
+    position: absolute;
+    width: 800px;
+    height: 1000px;
+    border-radius: 50% 47% 49% 49% / 40% 40% 57% 57%;
+    background: linear-gradient(to right, #8f8d8d, #460406);
+    box-shadow: 5px 5px 5px 5px #582224, -5px 5px 5px 5px #867879, -5px -5px 5px 5px #8D8585, 5px -5px 5px 5px #561E1F;
+    animation: face-color 2.5s infinite alternate;
+}
+/* face에 after 가상 선택자를 넣었기 때문에 이 뒤에 나오는 것들까지 다 덮어버림 이를 방지하기 위해 face 뒤에 나오는 모든 것들을 z-index:1 처리함 */
+.face *{
+    z-index: 1;
+}
+.eyes{
+    display: flex;
+    height: 100%;
+    position:absolute;
+    top: 350px;
+    gap: 100px;
+}
+.eye{
+    width: 350px;
+    height: 120px;
+    background-color: #ADFC43;
+    animation: shining  2.5s infinite, open-smaller 2.5s infinite alternate;
+}
+.eye.left{
+    border-radius: 53% 47% 49% 52% / 0% 100% 0% 100%;
+    transform: rotate(20deg);
+}
+.eye.right{
+    border-radius: 53% 47% 49% 52% / 100% 0% 100% 0% ;
+    transform: rotate(-20deg);
+}
+.wound{
+    position: absolute;
+    top: 20%;
+    left: 20%;
+}
+.wound-left{
+    width: 30px;
+    height: 430px;
+    background-color: #372325;
+    transform: rotate(50deg);
+    border-radius: 11% 89% 10% 89% / 29% 65% 35% 71%;
+    animation: face-color 2.5s infinite alternate;
+}
+.mouth{
+    width: 500px;
+    height: 90px;
+    background-color: #DE8D95;
+    border-radius: 53% 47% 47% 53% / 0% 0% 100% 100%;
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: mouth-open 2.5s infinite alternate;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: inset 20px 20px 20px #2c0909, inset -20px -20px 20px #2c0909;
+}
+.teeth{
+    display: flex;
+    justify-content: center;
+}
+.teeth li{
+    animation: teeth 2.5s infinite alternate;
+}
+.teeth.top li{
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 140px solid white;
+}
+.teeth.bottom li{
+    width: 0px;
+    height: 0px;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 140px solid white;
+}
+
+/* 뒤에 있는 캐릭터 */
+.container-behind{
+    width: 700px;
+    height: 900px;
+    border-radius: 51% 49% 46% 54% / 41% 39% 61% 59%;
+    background-color: #5c5c66;
+    opacity: 0.7;
+    box-shadow: 10px 10px 10px 10px #5c5c66, 10px -10px 10px 10px #5c5c66, -10px 10px 10px 10px #5c5c66, -10px -10px 10px 10px #5c5c66;
+    position:absolute;
+    left: 60%;
+    top: 10%;
+    z-index: -10;
+    animation: up-down 2.5s infinite alternate;
+}
+.eyes-behind{
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    position: absolute;
+    gap: 100px;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.eye-behind{
+    width: 150px;
+    height: 350px;
+    background-color: #525257;
+    border-radius: 50%;
+}
+.small{
+    width: 50px;
+    height: 150px;
+    background-color: #6e5853;
+    border-radius: 50%;
+    position: absolute;
+    top: 25%;
+    animation: left-right-move 3s infinite alternate;
+}
+
+@keyframes face-color {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes open-smaller {
+    to{
+        height: 60px;
+    }
+}
+@keyframes shining {
+    from{
+        filter: hue-rotate(0deg);
+    }
+    to{
+        filter: hue-rotate(360deg);
+    }
+}
+@keyframes mouth-open {
+    to{
+        height: 300px;
+        background-color: #010101;
+        border-radius: 3%;    
+    }
+}
+@keyframes teeth {
+    from{
+        scale: 0;
+    }
+    to{
+        scale: 1;
+    }
+}
+@keyframes left-right-move {
+    to{
+        transform: translateX(100px);
+    }
+}
+@keyframes up-down{
+    from{
+        transform:translateY(-50px);
+    }
+    to{
+        transform: translateY(100px);
+    }
+}
