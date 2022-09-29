@@ -2,9 +2,9 @@
     box-sizing: border-box;
 }
 body{
-    background-color: #6B301D;
+    height: 100vh;
+    background: linear-gradient(#000000, #6B301D);
 }
-
 /* 앞에 있는 캐릭터 */
 .container{
     position: absolute;
@@ -15,7 +15,7 @@ body{
 .face{
     width: 800px;
     height: 1000px;
-    background-color: rgb(209, 202, 202);
+    background-color: rgb(201, 192, 192);
     border-radius: 50% 47% 49% 49% / 40% 40% 57% 57%;
     box-shadow: 5px 5px 5px 5px rgb(209, 202, 202), -5px 5px 5px 5px rgb(209, 202, 202), -5px -5px 5px 5px rgb(209, 202, 202), 5px -5px 5px 5px rgb(209, 202, 202);
 }
@@ -45,6 +45,8 @@ body{
     height: 120px;
     background-color: #ADFC43;
     animation: shining  2.5s infinite, open-smaller 2.5s infinite alternate;
+    box-shadow: inset 10px 10px 20px 10px #4E1113, inset 10px -10px 20px 10px #4E1113, inset -10px 10px 90px 10px #4E1113;
+
 }
 .eye.left{
     border-radius: 53% 47% 49% 52% / 0% 100% 0% 100%;
@@ -56,15 +58,29 @@ body{
 }
 .wound{
     position: absolute;
-    top: 20%;
-    left: 20%;
+    top: 15%;
+    left: 25%;
 }
 .wound-left{
     width: 30px;
-    height: 430px;
+    height: 530px;
     background-color: #372325;
     transform: rotate(50deg);
     border-radius: 11% 89% 10% 89% / 29% 65% 35% 71%;
+    animation: face-color 2.5s infinite alternate;
+}
+.wound-second{
+    position: absolute;
+    right: 30%;
+    bottom: 90%;
+}
+.wound-right{
+    width: 20px;
+    height: 780px;
+    background-color: #372325;
+    position: absolute;
+    transform: rotate(-8deg);
+    border-radius: 100% 10% 10% 100% / 44% 44% 55% 56% ;
     animation: face-color 2.5s infinite alternate;
 }
 .mouth{
@@ -103,7 +119,6 @@ body{
     border-right: 30px solid transparent;
     border-bottom: 140px solid white;
 }
-
 /* 뒤에 있는 캐릭터 */
 .container-behind{
     width: 700px;
@@ -141,6 +156,7 @@ body{
     border-radius: 50%;
     position: absolute;
     top: 25%;
+    box-shadow: 3px 3px 5px 5px #2c0c0d, -3px 3px 5px 5px #2c0c0d;
     animation: left-right-move 3s infinite alternate;
 }
 
@@ -181,8 +197,11 @@ body{
     }
 }
 @keyframes left-right-move {
+    from{
+        transform: translateX(10px);
+    }
     to{
-        transform: translateX(100px);
+        transform: translateX(90px);
     }
 }
 @keyframes up-down{
