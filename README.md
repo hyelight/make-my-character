@@ -1,2 +1,2 @@
 # make-my-character
-##두 얼굴의 가면
+두 얼굴의 가면
